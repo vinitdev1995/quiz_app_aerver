@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = mongoose.Schema({
    companyName: String,
-   companyImage: String,
+   companyLogo: String,
    companyDescription: String,
    locationForCompany: Array,
    employeeRange: String,
@@ -12,7 +12,7 @@ const User = mongoose.Schema({
    teamsAndProcesses: String,
    techStack: String,
    workLifeAndCulture: String,
-   companyImages: String,
+   companyImage: String,
    perksAndBenefits: String,
    companyLinkedInURL: String,
    companyFacebookURL: String,
