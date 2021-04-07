@@ -11,11 +11,9 @@ module.exports = (req, res, next) => {
             res.status(200);
             next();
         } else {
-            res.status(401).send({error: 'Something went wrong'})
+            res.status(401).send({error: 'Token expired'})
         }
     } catch (e){
-        res.status(400).send({
-            error: new Error('Invalid request!')
-        });
+        res.status(400).send({error: 'Invalid token'});
     }
 };
