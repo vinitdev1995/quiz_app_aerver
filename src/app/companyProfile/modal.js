@@ -20,4 +20,4 @@ const User = mongoose.Schema({
    role: String,
    companyCareersPageLinkURL: String
 });
-module.exports = new mongoose.model("CompanyDetails", User);
+module.exports = new mongoose.model("company", User);

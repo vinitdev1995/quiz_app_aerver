@@ -2,9 +2,11 @@ const router = require("./src/app/index");
 const db = require("./src/db/db.config");
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const server = express();
 const port = 8000;
 server.use(express.json());
+server.use(cors());
 mongoose.connect(db.url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
