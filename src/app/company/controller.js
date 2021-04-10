@@ -2,8 +2,15 @@ const CompanyDetails = require("./modal");
 
 exports.create = async (req, res) =>{
      try {
-         const companyRecord = await CompanyDetails.create(req.body);
-         res.status(200).send(companyRecord);
+         const { companyId } = req.body;
+         let result = null;
+         const isExists = await CompanyDetails.find({companyId});
+         if (isExists && isExists.length) {
+             result = await CompanyDetails.updateOne({ companyId }, req.body);
+         } else {
+             result = await CompanyDetails.create(req.body);
+         }
+         res.status(200).send(result);
      }catch (e) {
          console.log(e);
          res.status(400);
@@ -13,7 +20,7 @@ exports.create = async (req, res) =>{
 exports.getCompanyProfileById = async (req, res) =>{
     try {
         const id = req.params.id;
-        const companyRecord = await CompanyDetails.find({companyId: id});
+        const companyRecord = await CompanyDetails.findOne({companyId: id});
         res.status(200).send(companyRecord);
     } catch (e) {
         res.status(400);
