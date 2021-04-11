@@ -26,3 +26,14 @@ exports.getCompanyProfileById = async (req, res) =>{
         res.status(400);
     }
 };
+
+exports.getCompanyProfileByName = async (req, res) =>{
+    try {
+        const name = req.params.name;
+        console.log(name);
+        const companyRecord = await CompanyDetails.findOne({ companyName: { "$regex": name, "$options": "i" } });
+        res.status(200).send(companyRecord);
+    } catch (e) {
+        res.status(400);
+    }
+};
