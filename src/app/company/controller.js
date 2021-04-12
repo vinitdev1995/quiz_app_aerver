@@ -2,9 +2,9 @@ const CompanyDetails = require("./modal");
 
 exports.create = async (req, res) =>{
      try {
-         const { companyId } = req.body;
+         const { companyId, companyName } = req.body;
          let result = null;
-         const isExists = await CompanyDetails.find({companyId});
+         const isExists = await CompanyDetails.find({companyId, companyName});
          if (isExists && isExists.length) {
              result = await CompanyDetails.updateOne({ companyId }, req.body);
          } else {
@@ -30,7 +30,6 @@ exports.getCompanyProfileById = async (req, res) =>{
 exports.getCompanyProfileByName = async (req, res) =>{
     try {
         const name = req.params.name;
-        console.log(name);
         const companyRecord = await CompanyDetails.findOne({ companyName: { "$regex": name, "$options": "i" } });
         res.status(200).send(companyRecord);
     } catch (e) {
