@@ -4,9 +4,8 @@ exports.create = async (req, res) =>{
      try {
          const { companyId, companyName } = req.body;
          let result = null;
-         const isExists = await CompanyDetails.find({companyId});
-         const isCompany = await CompanyDetails.find({companyName});
-         if (isExists && isExists.length && isCompany && isCompany.length) {
+         const isExists = await CompanyDetails.find({companyId, $or:[{companyName}]});
+         if (isExists && isExists.length) {
              result = await CompanyDetails.updateOne({ companyName }, req.body);
          } else {
              result = await CompanyDetails.create(req.body);
