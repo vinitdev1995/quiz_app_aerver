@@ -36,3 +36,13 @@ exports.getCompanyProfileByName = async (req, res) =>{
         res.status(400);
     }
 };
+
+exports.updateCompanyProfileByName = async (req, res) =>{
+    try {
+        const name = req.params.name;
+        const companyRecord = await CompanyDetails.updateOne({ companyName: name }, req.body);
+        res.status(200).send(companyRecord);
+    } catch (e) {
+        res.status(400);
+    }
+};
