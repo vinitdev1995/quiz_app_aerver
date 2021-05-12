@@ -1,4 +1,6 @@
+require('dotenv').config();
 const CompanyDetails = require("./modal");
+const sgMail = require('@sendgrid/mail');
 
 exports.create = async (req, res) =>{
      try {
@@ -45,4 +47,24 @@ exports.updateCompanyProfileByName = async (req, res) =>{
     } catch (e) {
         res.status(400);
     }
+};
+
+exports.sendMail = (req, res) =>{
+    console.log("---->", req.body);
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+        to: `${req.body.candidateEmail}`,
+        from: 'team@knowledgelocker.com',
+        subject: `${req.body.messageSubject}`,
+        html: `<strong>${req.body.messageBody}</strong>`,
+    };
+    sgMail.send(msg)
+        .then(() => {
+            console.log('Email sent');
+        }).catch(error => {
+            console.error(error);
+            if (error.response) {
+                console.error(error.response.body)
+            }
+        });
 };
