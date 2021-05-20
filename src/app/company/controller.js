@@ -33,7 +33,7 @@ exports.getCompanyProfileByName = async (req, res) =>{
     try {
         const name = req.params.name;
         const companyRecord = await CompanyDetails.findOne({ companyName: { "$regex": name, "$options": "i" } });
-        res.status(200).send(companyRecord);
+        res.status(200).send(companyRecord || {});
     } catch (e) {
         res.status(400);
     }
