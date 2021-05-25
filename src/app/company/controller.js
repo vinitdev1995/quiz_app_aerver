@@ -57,7 +57,6 @@ exports.sendMail = async (req, res) =>{
             from: 'team@knowledgelocker.com',
             subject: `${req.body.messageSubject}`,
             html: `<strong>${req.body.messageBody}</strong>`,
-
         };
         const mailRes = await sgMail.send(msg);
         res.status(200).send({ message: "successfully send mail", mailRes})
