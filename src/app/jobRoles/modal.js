@@ -3,7 +3,7 @@ const jobRoles = mongoose.Schema({
     companyId:Number,
     JobRole: String,
     JobRoleDescription: String,
-    JobLocations: Array,
+    JobLocations: String,
     TechStack: Array,
     JobStatus:String,
     JobApplicationLinks: [
