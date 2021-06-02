@@ -14,7 +14,16 @@ exports.createRole = async (req, res) =>{
 exports.getJobRoleById = async (req, res) =>{
     try {
         const id = req.params.id;
-        const jobRoleRecord = await jobDetails.findOne({companyId: id});
+        const jobRoleRecord = await jobDetails.findOne({_id: id});
+        res.status(200).send(jobRoleRecord);
+    } catch (e) {
+        res.status(400);
+    }
+};
+
+exports.getAllJobRole = async (req, res) =>{
+    try {
+        const jobRoleRecord = await jobDetails.find();
         res.status(200).send(jobRoleRecord);
     } catch (e) {
         res.status(400);
