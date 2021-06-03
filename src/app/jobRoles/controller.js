@@ -33,7 +33,7 @@ exports.getAllJobRole = async (req, res) =>{
 exports.updateJobRoleById = async (req, res) =>{
     try {
         const id = req.params.id;
-        const jobRoleRecord = await jobDetails.updateOne({ companyId: id }, req.body);
+        const jobRoleRecord = await jobDetails.findByIdAndUpdate({ _id: id }, req.body);
         res.status(200).send(jobRoleRecord);
     } catch (e) {
         res.status(400);
