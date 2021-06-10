@@ -3,6 +3,7 @@ const CompanyDetails = require("./modal");
 const sgMail = require('@sendgrid/mail');
 
 exports.create = async (req, res) =>{
+    console.log("req", req.body);
      try {
          const { companyId, companyName } = req.body;
          let result = null;
