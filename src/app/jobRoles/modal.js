@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const jobRoles = mongoose.Schema({
-    companyId:Number,
-    JobId:String,
+    companyId: Number,
+    companyName: String,
+    JobId: String,
     JobRole: String,
     JobRoleDescription: String,
     JobLocations: String,
     TechStack: Array,
-    JobStatus:String,
+    JobStatus: String,
     JobApplicationLinks: [
         {
             jobApplicationSite: String
